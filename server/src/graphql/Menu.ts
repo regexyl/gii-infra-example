@@ -32,12 +32,12 @@ export const Menu = objectType({
   },
 });
 
-// export const ItemListInput = inputObjectType({
-//   name: 'ItemListInput',
-//   definition(t) {
-//     t.nonNull.string('name'), t.nonNull.float('price');
-//   },
-// });
+export const ItemListInput = inputObjectType({
+  name: "ItemListInput",
+  definition(t) {
+    t.nonNull.string("name"), t.nonNull.float("price");
+  },
+});
 
 // export const VendorMutation = extendType({
 //   type: 'Mutation',

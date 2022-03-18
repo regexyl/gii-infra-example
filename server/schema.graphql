@@ -12,6 +12,11 @@ type Item {
   price: Float!
 }
 
+input ItemListInput {
+  name: String!
+  price: Float!
+}
+
 type Menu {
   cuisine: String!
   id: Int!
@@ -21,12 +26,6 @@ type Menu {
 type Mutation {
   login(email: String!, password: String!): AuthPayload!
   signup(email: String!, name: String!, password: String!): AuthPayload!
-}
-
-type Order {
-  id: Int!
-  items: [Item!]!
-  vendor: Vendor!
 }
 
 type Query {

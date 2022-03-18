@@ -8,28 +8,28 @@ import {
 } from "nexus";
 import { ItemListInput } from ".";
 
-export const Order = objectType({
-  name: "Order",
-  definition(t) {
-    t.nonNull.int("id");
-    t.nonNull.field("vendor", {
-      type: "Vendor",
-      resolve(parents, args, context) {
-        return context.prisma.order
-          .findUnique({ where: { id: parents.id } })
-          .vendor();
-      },
-    });
-    t.nonNull.list.nonNull.field("items", {
-      type: "Item",
-      resolve(parent, args, context) {
-        return context.prisma.order
-          .findUnique({ where: { id: parent.id } })
-          .items();
-      },
-    });
-  },
-});
+// export const Order = objectType({
+//   name: "Order",
+//   definition(t) {
+//     t.nonNull.int("id");
+//     t.nonNull.field("vendor", {
+//       type: "Vendor",
+//       resolve(parents, args, context) {
+//         return context.prisma.order
+//           .findUnique({ where: { id: parents.id } })
+//           .vendor();
+//       },
+//     });
+//     t.nonNull.list.nonNull.field("items", {
+//       type: "Item",
+//       resolve(parent, args, context) {
+//         return context.prisma.order
+//           .findUnique({ where: { id: parent.id } })
+//           .items();
+//       },
+//     });
+//   },
+// });
 
 // export const OrderMutation = extendType({
 //   type: 'Mutation',

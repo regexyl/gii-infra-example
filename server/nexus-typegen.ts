@@ -9,7 +9,13 @@ declare global {
   interface NexusGen extends NexusGenTypes {}
 }
 
-export interface NexusGenInputs {}
+export interface NexusGenInputs {
+  ItemListInput: {
+    // input type
+    name: string; // String!
+    price: number; // Float!
+  };
+}
 
 export interface NexusGenEnums {}
 
@@ -39,10 +45,6 @@ export interface NexusGenObjects {
     id: number; // Int!
   };
   Mutation: {};
-  Order: {
-    // root type
-    id: number; // Int!
-  };
   Query: {};
   Vendor: {
     // root type
@@ -89,12 +91,6 @@ export interface NexusGenFieldTypes {
     login: NexusGenRootTypes["AuthPayload"]; // AuthPayload!
     signup: NexusGenRootTypes["AuthPayload"]; // AuthPayload!
   };
-  Order: {
-    // field return type
-    id: number; // Int!
-    items: NexusGenRootTypes["Item"][]; // [Item!]!
-    vendor: NexusGenRootTypes["Vendor"]; // Vendor!
-  };
   Query: {
     // field return type
     vendor: NexusGenRootTypes["Vendor"] | null; // Vendor
@@ -137,12 +133,6 @@ export interface NexusGenFieldTypeNames {
     // field return type name
     login: "AuthPayload";
     signup: "AuthPayload";
-  };
-  Order: {
-    // field return type name
-    id: "Int";
-    items: "Item";
-    vendor: "Vendor";
   };
   Query: {
     // field return type name
@@ -192,7 +182,7 @@ export interface NexusGenTypeInterfaces {}
 
 export type NexusGenObjectNames = keyof NexusGenObjects;
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = keyof NexusGenInputs;
 
 export type NexusGenEnumNames = never;
 
