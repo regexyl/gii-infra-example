@@ -4,11 +4,12 @@ import {
   createHttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import React, { createContext, useContext, useState } from 'react';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import React, { createContext, useContext, useState } from "react";
 
 const serverPort = process.env.SERVER_PORT || 3001;
+const API_URL = process.env.API_URL;
 
 export interface AuthContextType {
   getAuthToken: () => string | null;
@@ -40,7 +41,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [authToken, setAuthToken] = useState<string | null>(null);
-  const [vendorEmail, setVendorEmail] = useState('');
+  const [vendorEmail, setVendorEmail] = useState("");
 
   const getAuthToken = () => authToken;
   const getVendorEmail = () => vendorEmail;
@@ -59,7 +60,7 @@ function useProvideAuth() {
 
   const createApolloClient = () => {
     const httpLink = createHttpLink({
-      uri: `http://localhost:${serverPort}`,
+      uri: API_URL ? API_URL : `http://localhost:${serverPort}`,
     });
 
     // TODO: Add bearer token to every authorized request
@@ -67,7 +68,7 @@ function useProvideAuth() {
       return {
         headers: {
           ...headers,
-          authorization: authToken ? `Bearer ${authToken}` : '',
+          authorization: authToken ? `Bearer ${authToken}` : "",
         },
       };
     });
