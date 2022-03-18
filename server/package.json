@@ -4,7 +4,7 @@
     "generate": "ts-node --transpile-only src/schema.ts",
     "migrate:deploy": "prisma migrate deploy",
     "build": "prisma generate && npm run generate && tsc",
-    "start": "node dist/src/index.js"
+    "start": "ts-node src/index.js"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
