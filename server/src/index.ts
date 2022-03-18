@@ -1,10 +1,13 @@
-import { ApolloServer } from 'apollo-server';
-import { context } from './context';
-import { schema } from './schema';
+import { ApolloServer } from "apollo-server";
+import { ApolloServerPluginLandingPageLocalDefault } from "apollo-server-core";
+import { context } from "./context";
+import { schema } from "./schema";
 
 export const server = new ApolloServer({
   schema,
-  context
+  context,
+  introspection: true,
+  plugins: [ApolloServerPluginLandingPageLocalDefault()],
 });
 
 const port = 3001;
