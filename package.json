@@ -6,7 +6,8 @@
   "scripts": {
     "postinstall": "husky install",
     "prepack": "pinst --disable",
-    "postpack": "pinst --enable"
+    "postpack": "pinst --enable",
+    "test": "echo 'Hello world!'"
   },
   "devDependencies": {
     "husky": "^7.0.0",
