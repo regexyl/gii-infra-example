@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Vendor {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  name     String
+  balance  Float   @default(0)
+  menu     Menu?   @relation(name: "MenuBy")
+  order    Order[] @relation(name: "VendorOrders")
+}
+
+model Menu {
+  id       Int    @id @default(autoincrement())
+  vendor   Vendor @relation(name: "MenuBy", fields: [vendorId], references: [id])
+  vendorId Int    @unique
+  items    Item[] @relation(name: "MenuItems")
+  itemId   Int
+  cuisine  String
+}
+
+model Item {
+  id      Int    @id @default(autoincrement())
+  name    String
+  price   Float
+  menu    Menu   @relation(name: "MenuItems", fields: [menuId], references: [id])
+  menuId  Int    @unique
+  order   Order  @relation(name: "OrderItems", fields: [orderId], references: [id])
+  orderId Int    @unique
+}
+
+model Order {
+  id       Int    @id @default(autoincrement())
+  vendor   Vendor @relation(name: "VendorOrders", fields: [vendorId], references: [id])
+  vendorId Int
+  items    Item[] @relation(name: "OrderItems")
+}
